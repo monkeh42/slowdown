@@ -28,7 +28,7 @@ function gameLoop() {
     document.getElementById("mass").innerHTML = regularFormat(player.mass, 1);
     document.getElementById("force").innerHTML = regularFormat(player.force, 1);
 
-    if (!player.upgrades.includes(id)) {
+    if (!player.upgrades.includes(1)) {
         if (canAfford(1) && document.getElementById("upgrade-1").classList.contains("cant")) {
             document.getElementById("upgrade-1").classList.remove("cant");
             document.getElementById("upgrade-1").classList.add("can");
