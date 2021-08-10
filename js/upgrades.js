@@ -1,7 +1,7 @@
 var upgrades = {
     1: {
         title: "Unlock wind resistance",
-        cost: new Decimal("5e1005"),
+        cost: new Decimal("5e1000"),
     }
 }
 
@@ -13,5 +13,6 @@ function buyUpgrade(id) {
     if (!canAfford(id)) { return }
     player.upgrades.push(id);
     document.getElementById("upgrade-" + id).classList.remove("cant");
+    document.getElementById("upgrade-" + id).classList.remove("can");
     document.getElementById("upgrade-" + id).classList.add("bought");
 }
