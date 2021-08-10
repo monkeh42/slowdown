@@ -1,0 +1,26 @@
+body {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    background-color: grey;
+    color: greenyellow;
+    text-align: center;
+}
+
+#speed-div {
+    font-size: 1.5em;
+}
+
+#stats-div {
+    border: 1px solid greenyellow;
+    width: 600px;
+    padding: 1em;
+    margin: auto;
+}
+
+#speed-hr {
+    border: 1px solid greenyellow;
+}
+
+#title {
+    text-transform: uppercase;
+}
