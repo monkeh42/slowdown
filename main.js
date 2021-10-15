@@ -1,6 +1,6 @@
 var player = {
-    force: new Decimal("1e2000"),
-    mass: new Decimal("1e1000"),
+    force: new Decimal(2.1e7),
+    mass: new Decimal(70),
     speed: new Decimal(0),
     distance: new Decimal(0),
     lastUpdate: new Date().getTime(),
@@ -11,6 +11,8 @@ var player = {
 
     upgrades: [],
 }
+
+const SPEED_OF_LIGHT = new Decimal(299792458);
 
 function init() {
     startInterval();
@@ -25,7 +27,7 @@ function gameLoop() {
     diff = new Decimal(currentUpdate - player.lastUpdate);
     if (player.upgrades.includes(1)) { player.force = player.force.minus(calculateAirRes()); }
     player.distance = player.distance.plus(calculateDistance(player.speed, player.speed.plus(calculateAcc().times(diff.div(1000))), diff))
-    player.speed = player.speed.plus(calculateAcc().times(diff.div(1000)));
+    player.speed = Decimal.min(player.speed.plus(calculateAcc().times(diff.div(1000))), SPEED_OF_LIGHT);
 
     document.getElementById("speed").innerHTML = regularFormat(player.speed, 2);
     document.getElementById("distance").innerHTML = regularFormat(player.distance, 2);

@@ -1,14 +1,14 @@
 
 function exponentialFormat(num, precision, mantissa = true) {
-    let e = num.log10().floor()
+    let e = Decimal.floor(num.log10())
     let m = num.div(Decimal.pow(10, e))
     if (m.toStringWithDecimalPlaces(precision) == 10) {
         m = decimalOne
         e = e.add(1)
     }
-    e = (e.gte(1e9) ? format(e, 3) : (e.gte(10000) ? commaFormat(e, 0) : e.toStringWithDecimalPlaces(0)))
+    e = (e.gte(1e9) ? format(e, 3) : (e.gte(10000) ? commaFormat(e, 0) : e.toFixed(0)))
     if (mantissa)
-        return m.toStringWithDecimalPlaces(precision) + "e" + e
+        return m.toFixed(precision) + "e" + e
     else return "e" + e
 }
 
@@ -24,10 +24,11 @@ function commaFormat(num, precision) {
 
 
 function regularFormat(num, precision) {
+    num = new Decimal(num);
     if (num === null || num === undefined) return "NaN"
     if (num.mag < 0.0001) return (0).toFixed(precision)
     if (num.mag < 0.1 && precision !==0) precision = Math.max(precision, 4)
-    return num.toStringWithDecimalPlaces(precision)
+    return exponentialFormat(num, precision);
 }
 
 function fixValue(x, y = 0) {
